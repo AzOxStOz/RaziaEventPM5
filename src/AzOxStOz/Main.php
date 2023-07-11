@@ -6,13 +6,15 @@ use AzOxStOz\Listener\RaziaListener;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
 use AzOxStOz\Command\RaziaCommand;
+use pocketmine\utils\SingletonTrait;
 
 class Main extends PluginBase
 {
+    use SingletonTrait;
 
     public function onLoad(): void
     {
-        self::$instance = $this;
+        self::setInstance($this);
     }
 
     public function onEnable(): void
