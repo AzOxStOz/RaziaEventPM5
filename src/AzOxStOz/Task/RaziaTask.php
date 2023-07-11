@@ -52,7 +52,7 @@ class RaziaTask extends Task
                 $maxPlayer = $playerName;
             }
         }
-        
+
         if (!is_null($maxPlayer)) {
             Server::getInstance()->broadcastMessage("§aThe Razia is finish ! The player with the highest score is: §2{$maxPlayer}§a !");
         } else {
