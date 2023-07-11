@@ -1,0 +1,13 @@
+name: RaziaEvent
+version: 1.0.0
+api: 5.0.0
+author: AzOxStOz
+main: AzOxStOz\Main
+
+permissions:
+  razia.cmd:
+    default: true
+  razia.stop.cmd:
+    default: op
+  razia.start.cmd:
+    default: op
