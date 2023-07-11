@@ -10,7 +10,12 @@ use pocketmine\utils\Config;
 
 class RaziaListener implements Listener
 {
-    public function clickAmethyst(PlayerInteractEvent $event)
+    /**
+     * @param PlayerInteractEvent $event
+     * @return void
+     * @throws \JsonException
+     */
+    public function onPlayerInteractEvent(PlayerInteractEvent $event)
     {
         $player = $event->getPlayer();
 
@@ -31,7 +36,7 @@ class RaziaListener implements Listener
                 if ($block->getTypeId() === VanillaBlocks::AMETHYST()->getTypeId()) {
                     $block->getPosition()->getWorld()->setBlock($block->getPosition(), VanillaBlocks::AIR());
                     $money = mt_rand(5, 30);
-                    $player->sendJukeboxPopup("§aYou've recieve§2 $money $ §a!");
+                    $player->sendJukeboxPopup("§aYou've recieve §2{$money}$ §a!");
 
                     $raziaData = new Config(Main::getInstance()->getDataFolder() . "razia.json", Config::JSON);
                     $playerName = $player->getName();

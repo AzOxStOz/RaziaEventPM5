@@ -11,6 +11,9 @@ use pocketmine\utils\Config;
 
 class RaziaTask extends Task
 {
+    /**
+     * @return void
+     */
     public function onRun(): void
     {
         $startX = 100;
@@ -34,9 +37,13 @@ class RaziaTask extends Task
         $this->winnerMessage();
     }
 
+    /**
+     * @return void
+     * @throws \JsonException
+     */
     public function winnerMessage(): void {
         $raziaData = new Config(Main::getInstance()->getDataFolder() . "razia.json", Config::JSON);
-        $maxPlayer = "";
+        $maxPlayer = null;
         $maxCount = 0;
 
         foreach ($raziaData->getAll() as $playerName => $playerCount) {
@@ -45,12 +52,13 @@ class RaziaTask extends Task
                 $maxPlayer = $playerName;
             }
         }
-
-        if ($maxPlayer !== "") {
-            $server = Server::getInstance();
-            $server->broadcastMessage("§aThe Razia is finish ! The player with the highest score is:§2 $maxPlayer §a!");
+        
+        if (!is_null($maxPlayer)) {
+            Server::getInstance()->broadcastMessage("§aThe Razia is finish ! The player with the highest score is: §2{$maxPlayer}§a !");
+        } else {
+            Server::getInstance()->broadcastMessage("§aThe Razia is finish ! No player has the highest score !");
         }
-        $raziaData->remove(true);
+        $raziaData->setAll([]);
         $raziaData->save();
     }
 }
