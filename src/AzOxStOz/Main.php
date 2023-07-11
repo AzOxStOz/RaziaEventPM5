@@ -12,11 +12,17 @@ class Main extends PluginBase
 {
     use SingletonTrait;
 
+    /**
+     * @return void
+     */
     public function onLoad(): void
     {
         self::setInstance($this);
     }
 
+    /**
+     * @return void
+     */
     public function onEnable(): void
     {
         Server::getInstance()->getLogger()->notice("§d»§f RaziaEvent is loaded ! (By AzOxStOz)");

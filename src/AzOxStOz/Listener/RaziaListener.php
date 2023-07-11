@@ -7,6 +7,7 @@ use pocketmine\block\VanillaBlocks;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\utils\Config;
+use pocketmine\world\sound\AmethystBlockChimeSound;
 
 class RaziaListener implements Listener
 {
@@ -37,6 +38,7 @@ class RaziaListener implements Listener
                     $block->getPosition()->getWorld()->setBlock($block->getPosition(), VanillaBlocks::AIR());
                     $money = mt_rand(5, 30);
                     $player->sendJukeboxPopup("§aYou've recieve §2{$money}$ §a!");
+                    $player->getWorld()->addSound($player->getPosition(), new AmethystBlockChimeSound());
 
                     $raziaData = new Config(Main::getInstance()->getDataFolder() . "razia.json", Config::JSON);
                     $playerName = $player->getName();
